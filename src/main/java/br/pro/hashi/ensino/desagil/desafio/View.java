@@ -29,7 +29,6 @@ public class View extends JPanel {
         // Esse jeito de construir um dicionário só pode
         // ser usado se você não pretende mudá-lo depois.
         elementsToImages = Map.of(
-                model.getTarget(), getImage("target.png"),
                 model.getHumanPlayer(), getImage("human-player.png"),
                 model.getCpuPlayer(), getImage("cpu-player.png")
         );
@@ -75,6 +74,27 @@ public class View extends JPanel {
         // Linha necessária para evitar atrasos
         // de renderização em sistemas Linux.
         getToolkit().sync();
+
+
+        //pontuação na tela
+        Integer num = model.getHumanPlayer().getPoints();
+        String string = num.toString();
+        g.setColor(Color.BLACK);
+        g.drawString("Jogador: " + string + " pts", 20, 20);
+
+        Integer num1 = model.getCpuPlayer().getPoints();
+        String string1 = num1.toString();
+        g.setColor(Color.BLACK);
+        g.drawString("Computador: " + string1 + " pts", 20, 40);
+
+
+        //atualizando a imagem target
+
+        int col1 = model.getTarget().getCol();
+        int row1 = model.getTarget().getRow();
+
+        g.drawImage(getImage("target.png"), col1 * CELL_SIZE, row1 * CELL_SIZE, CELL_SIZE, CELL_SIZE, this);
+
     }
 
 

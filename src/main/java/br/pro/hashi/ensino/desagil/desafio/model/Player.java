@@ -14,11 +14,12 @@ public abstract class Player extends Element {
         col += colShift;
     }
 
-    public int getPoints() {
-    	return points;
-	}
 
-	public void incrementPoints() {
-    	this.points++;
-	}
+    public int getPoints() {
+        return points;
+    }
+
+    public void incrementPoints() {
+        this.points++;
+    }
 }

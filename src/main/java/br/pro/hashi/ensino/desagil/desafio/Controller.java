@@ -32,6 +32,13 @@ public class Controller implements KeyListener, ActionListener {
     public void keyPressed(KeyEvent event) {
         HumanPlayer humanPlayer = model.getHumanPlayer();
 
+
+        if (humanPlayer.getRow() == model.getTarget().getRow() && humanPlayer.getCol() == model.getTarget().getCol()) {
+            model.setWinner(humanPlayer);
+            model.getHumanPlayer().incrementPoints();
+            model.chooseRandomTarget();
+        }
+
         // Para agir de acordo com a tecla que foi pressionada, comparamos o key code do evento com as
         // constantes disponíveis na classe KeyEvent. Uma lista dessas constantes pode ser vista em
         // https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/event/KeyEvent.html.
@@ -66,7 +73,14 @@ public class Controller implements KeyListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         CpuPlayer cpuPlayer = model.getCpuPlayer();
 
+        if (cpuPlayer.getRow() == model.getTarget().getRow() && cpuPlayer.getCol() == model.getTarget().getCol()) {
+            model.setWinner(cpuPlayer);
+            model.getCpuPlayer().incrementPoints();
+            model.chooseRandomTarget();
+        }
+
         cpuPlayer.move();
+
 
         view.repaint();
     }
